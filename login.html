@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Log in</title>
+</head>
+<body>
+    <header>
+        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+        <nav>
+            <ul>
+                <li>projets</li>
+                <li>contact</li>
+                <li>login</li>
+                <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+            </ul>
+        </nav>
+    </header>
+  <h2>Log in</h2>
+  <form action="/users/login" method="post">
+    <div>
+      <label for="username">E-mail</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+      <input type="submit" value="Se Connecter">
+    </div>
+  </form>
+  <script src="js/login.js"></script>
+</body>
+</html>
