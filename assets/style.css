@@ -227,3 +227,27 @@ footer nav ul {
 	margin: 2em
 }
 
+
+/* MODAL */
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-container h2 {
+    margin-right: 20px;
+}
+
+.title-container button {
+    font-size: 16px;
+    padding: 8px 12px;
+    border: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+	background-color: white;
+	padding-bottom: 2rem;
+}
