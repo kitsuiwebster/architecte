@@ -1,7 +1,7 @@
 
 // PROJECTS PAGE
 
-const domainName = 'http://localhost:5678'
+const domainName = 'http://localhost:8080'
 
 async function fetchProjects(projects) {
 
