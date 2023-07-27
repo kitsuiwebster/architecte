@@ -12,12 +12,12 @@
 </head>
 <body>
 <header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li> <a href="/login.html">  login</a></li>
+			<li> <a href="login.html">  login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -89,11 +89,18 @@
 
 <div id="dialog-container">
 	<div id="dialog">
+		<button type="button" id="cross" data-dismiss="modal">&times;</button>
+
 		<div id="title">
-		Galerie Photo
+			<h3>Galerie Photo</h3>
 		</div>
-		<div id="content">
-		
+
+		<div id="projects-list">
+		</div>
+
+		<div id="buttons-container">
+			<button id="add-photo-button">Ajouter une photo</button>
+			<button id="delete-galery">Supprimer la galerie</button>
 		</div>
 	</div>
 </div>

@@ -84,6 +84,9 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
+h3{
+	font-size: 40px;
+}
 nav ul {
 	display: flex;
 	align-items: center;
@@ -262,7 +265,7 @@ footer nav ul {
 	right: 0;
 	background: rgba(0.2,0,0,0.7);
 
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 
@@ -277,3 +280,41 @@ footer nav ul {
 #title {
 	position: relative;
 }
+
+#project-list {
+	border-bottom: 2px solid #0000;
+}
+
+#buttons-container {
+	display: flex;
+	flex-direction: column;
+}
+
+#add-photo-button {
+	background-color: #1D6154;
+	border: 2px solid white;
+	border-radius: 20px;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	transition: all 0.3s ease;
+	cursor: pointer;
+	margin: 0 0.5rem 0 0.5rem;
+}
+
+#delete-galery {
+	background-color: white;
+	color: red;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	transition: all 0.3s ease;
+	cursor: pointer;
+	margin: 0 0.5rem 0 0.5rem;
+}
+

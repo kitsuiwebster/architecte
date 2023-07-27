@@ -1,3 +1,17 @@
+
+
+function getData(form) {
+  return Array.form(new FormData(form))
+    .reduce(
+      (acc, [key, value]) => {
+        acc[key] = value;
+
+        return acc;
+      }
+    )
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('form').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -13,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to login. Please check your email and password.');
+        throw new Error('La connexion a échoué, vérifie ton adresse email et ton mot de passe');
       }
 
       const data = await response.json();
@@ -21,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.userId && data.token) {
         localStorage.setItem('userId', data.userId);
         localStorage.setItem('token', data.token);
-        alert('Login successful!');
+        alert('Tu es bien connecté!');
       } else {
-        throw new Error('Unexpected response from server');
+        throw new Error('Une erreur est survenue');
       }
     } catch (error) {
       alert(error.message);

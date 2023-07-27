@@ -1,7 +1,7 @@
 
 // PROJECTS PAGE
 
-const domainName = 'http://localhost:8080'
+const domainName = 'http://localhost:5678'
 
 async function fetchProjects(projects) {
 
@@ -73,3 +73,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
+// MODAL
+
+document.getElementById("edit-button").addEventListener("click", (e) => { e.preventDefault();
+    document.getElementById("dialog-container").style.display = "flex";
+});
+
+document.getElementById("cross").addEventListener("click", (e) => { e.preventDefault();
+    document.getElementById("dialog-container").style.display = "none";
+});
