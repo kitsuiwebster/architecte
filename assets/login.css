@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+header h1 span {
+    font-weight: normal;
+    color: #777;
+}
+
+header h1 {
+    margin-left: 5rem; 
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav li {
+    cursor: pointer;
+}
+
+nav li#login { 
+    font-weight: bold;
+}
+
+
+nav img {
+    height: 24px;
+    width: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+}
+
+div {
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+label, input {
+    width: 100%;
+    display: block;	
+	border: none;
+}
+
+input[type="submit"], .forgot-password {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="password"] {
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	height: 1.5rem;
+	width: 20rem;
+    padding: 10px;
+}
+
+
+
+
+.forgot-password {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 20px; 
+}
+
+footer a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

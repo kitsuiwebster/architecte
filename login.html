@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Log in</title>
+    <title>Log in</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/login.css">
 </head>
 <body>
     <header>
@@ -10,24 +12,31 @@
             <ul>
                 <li>projets</li>
                 <li>contact</li>
-                <li>login</li>
+                <li id="login">login</li>
                 <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
             </ul>
         </nav>
     </header>
-  <h2>Log in</h2>
-    <div>
-      <label for="username">E-mail</label>
-      <input type="text" id="username" name="username" required>
-    </div>
-    <div>
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" name="password" required>
-    </div>
-    <div>
-      <input type="submit" value="Se Connecter">
-    </div>
-  </form>
-  <script src="js/login.js"></script>
+    <main>
+        <h2>Log in</h2>
+        <form>
+            <div>
+                <label for="username">E-mail</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <input type="submit" value="Se Connecter">
+                <button class="forgot-password">Mot de passe oublié</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <a href="#">Mentions Légales</a>
+    </footer>
+    <script src="js/login.js"></script>
 </body>
 </html>

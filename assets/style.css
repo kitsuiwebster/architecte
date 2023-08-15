@@ -3,6 +3,8 @@
    License: none (public domain)
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Syne&display=swap');
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -317,4 +319,8 @@ footer nav ul {
 	cursor: pointer;
 	margin: 0 0.5rem 0 0.5rem;
 }
+
+
+
+/* LOGIN */
 
