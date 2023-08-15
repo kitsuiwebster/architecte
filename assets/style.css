@@ -260,67 +260,81 @@ footer nav ul {
 /* DIALOG */
 
 #dialog-container {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: rgba(0.2,0,0,0.7);
-
-	display: none;
-	justify-content: center;
-	align-items: center;
-
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0.2,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
 }
 
 #dialog {
-	background: white;
-	padding: 5rem;border-radius: 10px;
-
+    background: white;
+    padding: 5rem;
+    border-radius: 10px;
+    display: flex;      
+    flex-direction: column;
 }
 
-#title {
-	position: relative;
+#title-container {
+    display: flex; 
+    justify-content: space-between;
+    width: 100%;
+    align-items: center; 
+}
+
+#cross {
+    cursor: pointer;
+    padding: 0.5rem; 
+}
+
+#title h3 {
+    font-size: 20px;
+    margin: 0;
 }
 
 #project-list {
-	border-bottom: 2px solid #0000;
+    border-bottom: 2px solid #0000;
 }
 
 #buttons-container {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 #add-photo-button {
-	background-color: #1D6154;
-	border: 2px solid white;
-	border-radius: 20px;
-	color: white;
-	padding: 10px 20px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	transition: all 0.3s ease;
-	cursor: pointer;
-	margin: 0 0.5rem 0 0.5rem;
+    background-color: #1D6154;
+    border: 2px solid white;
+    border-radius: 20px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0 0.5rem 0 0.5rem;
 }
 
 #delete-galery {
-	background-color: white;
-	color: red;
-	padding: 10px 20px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	transition: all 0.3s ease;
-	cursor: pointer;
-	margin: 0 0.5rem 0 0.5rem;
+    background-color: white;
+    color: red;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0 0.5rem 0 0.5rem;
 }
 
 
 
-/* LOGIN */
+
 
