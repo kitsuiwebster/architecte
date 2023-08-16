@@ -324,12 +324,12 @@
     justify-content: center;
     padding: 1rem;
     overflow-y: auto;
-    max-height: 80rem;  /* Adjust if you want a specific max height or remove if unnecessary */
+    max-height: 80rem;  
 }
 
 
 #projects-list img {
-    max-width: 100%;  /* This makes sure the image doesn't overflow its container */
+    max-width: 100%;  
     height: auto;
     object-fit: cover;
     border-radius: 8px;
@@ -345,7 +345,7 @@
 
 #modal-project-list li {
     list-style: none;
-    flex: 0 0 calc(20% - 1rem);  /* No growing, just the set size */
+    flex: 0 0 calc(20% - 1rem); 
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
