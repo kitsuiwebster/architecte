@@ -75,10 +75,58 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // MODAL
 
+// open the modal
+
 document.getElementById("edit-button").addEventListener("click", (e) => { e.preventDefault();
     document.getElementById("dialog-container").style.display = "flex";
 });
 
+// close the modal with the cross
+
 document.getElementById("cross").addEventListener("click", (e) => { e.preventDefault();
     document.getElementById("dialog-container").style.display = "none";
+});
+
+
+// close the modal when clicking out
+document.getElementById("dialog-container").addEventListener("click", (e) => {
+    if (e.target === e.currentTarget) { 
+        document.getElementById("dialog-container").style.display = "none";
+    }
+});
+
+
+
+// fetch projects 
+
+async function populateModalWithProjects(projects) {
+    try {
+        const projectListUl = document.querySelector('#modal-project-list');
+        projectListUl.innerHTML = ''; 
+
+        projects.forEach((project) => {
+            const projectLi = document.createElement('li');
+
+            projectLi.innerHTML = `
+                <img src="${project.imageUrl}" alt="${project.title}"/>
+            `;
+
+            projectListUl.appendChild(projectLi);
+        });
+    } catch (error) {
+        console.error("Une erreur est survenue lors de l'ouverture de la modal: ", error);
+    }
+}
+
+document.getElementById("edit-button").addEventListener("click", async (e) => {
+    e.preventDefault();
+    document.getElementById("dialog-container").style.display = "flex";
+
+    if (!window.projects) {
+        const response = await fetch(`${domainName}/api/works`);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        window.projects = await response.json();
+    }
+
+    populateModalWithProjects(window.projects);
 });
