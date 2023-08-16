@@ -36,9 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('userId', data.userId);
         localStorage.setItem('token', data.token);
         alert('Tu es bien connecté!');
-      } else {
+    
+        window.location.href = "index.html";
+    
+    } else {
         throw new Error('Une erreur est survenue');
-      }
+    }
+    
     } catch (error) {
       alert(error.message);
     }
