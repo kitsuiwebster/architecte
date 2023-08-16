@@ -73,6 +73,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
+// display the edit button
+
+document.addEventListener('DOMContentLoaded', () => {
+    const editButton = document.getElementById('edit-button');
+    
+    if (localStorage.getItem('userId') && localStorage.getItem('token')) {
+        editButton.style.display = 'block'; 
+        editButton.style.display = 'none';
+    }
+});
+
+
+
 // MODAL
 
 // open the modal

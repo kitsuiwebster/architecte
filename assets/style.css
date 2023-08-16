@@ -25,7 +25,6 @@
 		font: inherit;
 		vertical-align: baseline;
 	}
-	/* HTML5 display-role reset for older browsers */
 	article, aside, details, figcaption, figure,
 	footer, header, hgroup, menu, nav, section {
 		display: block;
@@ -131,6 +130,12 @@
 		margin-bottom: 1em;
 	}
 
+	/* EDIT BUTTON */
+
+	#edit-button {
+		display: block;
+	}
+	
 
 	/* FILTERS */
 
@@ -316,7 +321,6 @@
 #projects-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;  /* or adjust as needed for spacing */
     justify-content: center;
     padding: 1rem;
     overflow-y: auto;
@@ -334,7 +338,6 @@
 #modal-project-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;  /* or adjust as needed for spacing */
     justify-content: space-between;
     padding: 1rem;
 }
