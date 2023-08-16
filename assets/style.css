@@ -29,9 +29,6 @@
 	footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
-	body {
-		line-height: 1;
-	}
 	ol, ul {
 		list-style: none;
 	}
@@ -53,6 +50,7 @@
 		margin:auto;
 		font-family: 'Work Sans' ;
 		font-size: 14px;
+		line-height: 1;
 	}
 	header {
 		display: flex;
@@ -381,7 +379,7 @@
     color: white;
 }
 
-#delete-galery {
+#delete-gallery {
     background-color: white;
     color: red;
     border: none;
