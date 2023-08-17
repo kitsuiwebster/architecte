@@ -51,3 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+// go to projects page
+
+document.getElementById('projects-tab').addEventListener('click', (e) => {
+    e.preventDefault(); 
+    window.location.href = "index.html"; 
+});
+
