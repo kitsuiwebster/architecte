@@ -3,11 +3,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 1rem 2rem;
 }
 
 header h1 span {
-    font-weight: normal;
     color: #777;
 }
 
@@ -20,7 +19,6 @@ nav ul {
     list-style: none;
     padding: 0;
     display: flex;
-    gap: 20px;
 }
 
 nav li {
@@ -33,7 +31,7 @@ nav li#login {
 
 
 nav img {
-    height: 24px;
+    height: 1.7rem;
     width: auto;
 }
 
@@ -42,13 +40,12 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 80vh;
+    min-height: 45rem;
 }
 
 div {
-    margin-bottom: 15px;
+    margin-bottom: 2rem;
     width: 100%;
-    max-width: 400px;
 }
 
 label, input {
@@ -59,22 +56,20 @@ label, input {
 
 input[type="submit"], .forgot-password {
     border: none;
-    padding: 10px 20px;
+    padding: 1rem 2rem;
     border-radius: 20px;
     cursor: pointer;
     text-align: center;
     display: block;
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
 input[type="text"], input[type="password"] {
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	height: 1.5rem;
 	width: 20rem;
-    padding: 10px;
+    padding: 1rem;
 }
-
-
 
 
 .forgot-password {
@@ -84,12 +79,11 @@ input[type="text"], input[type="password"] {
 }
 
 
-
 footer {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    padding: 20px; 
+    padding: 1rem; 
 }
 
 footer a {
