@@ -128,14 +128,14 @@
 		margin-bottom: 1em;
 	}
 
-	/* EDIT BUTTON */
+	/* edit button */
 
 	#edit-button {
 		display: block;
 	}
 	
 
-	/* FILTERS */
+	/* filters */
 
 	.filter-container {
 		display: flex;
@@ -240,7 +240,7 @@
 
 
 	
-/* DIALOG CONTAINER STYLES */
+/* dialog container */
 #dialog-container {
     display: none;
     position: fixed;
@@ -265,7 +265,7 @@
     position: relative;
 }
 
-/* TITLE CONTAINER STYLES */
+/* title container */
 .title-container {
     display: flex;
     justify-content: center;
@@ -311,7 +311,7 @@
     margin: 0;
 }
 
-/* PROJECT LIST STYLES */
+/* project list */
 #project-list {
     border-bottom: 2px solid #0000;
 }
@@ -354,7 +354,7 @@
     transform: scale(1.05);
 }
 
-/* BUTTONS CONTAINER STYLES */
+/* buttons container */
 #buttons-container {
     display: flex;
     flex-direction: column;
@@ -384,5 +384,3 @@
     color: red;
     border: none;
 }
-
-
