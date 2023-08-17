@@ -154,31 +154,4 @@ document.getElementById("add-photo-button").addEventListener("click", () => {
 
 // send the photo to backend
 
-document.getElementById("photo-upload").addEventListener("change", async (event) => {
-    const file = event.target.files[0];
-    
-    if (file) {
-        try {
-            const formData = new FormData();
-            formData.append('photo', file);
 
-            const response = await fetch(`${domainName}/api/works`, {
-                method: 'POST',
-                body: formData,
-            });
-
-            if (!response.ok) {
-                throw new Error(`Errer HTTP! : ${response.status}`);
-            }
-
-            const jsonResponse = await response.json();
-            console.log(jsonResponse);
-
-            window.projects.push(jsonResponse);
-            populateModalWithProjects(window.projects);
-
-        } catch (error) {
-            console.error("Une erreur est survenue lors de l'ajout de la photo: ", error);
-        }
-    }
-});
