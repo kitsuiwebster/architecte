@@ -3,6 +3,9 @@
 
 const domainName = 'http://localhost:5678'
 
+
+// fetch projects
+
 async function fetchProjects(projects) {
 
     try{
@@ -29,7 +32,7 @@ async function fetchProjects(projects) {
     }
 }
 
-
+// display filters
 
 function displayCategory(categoryLabel, projects, filter = true) {
     const categoryTemplate = document.querySelector('#category-template');
@@ -52,9 +55,6 @@ function displayCategory(categoryLabel, projects, filter = true) {
 
     categoryTemplate.parentElement.appendChild(categoryDiv);
 }
-
-
-
 
 document.addEventListener('DOMContentLoaded', async () => {
     

@@ -1,4 +1,4 @@
-
+// getdata function
 
 function getData(form) {
   return Array.form(new FormData(form))
@@ -12,12 +12,15 @@ function getData(form) {
 }
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const email = document.getElementById('username').value;
     const password = document.getElementById('password').value;
+
+    // login fucntion
 
     try {
       const response = await fetch('http://localhost:5678/api/users/login', {
