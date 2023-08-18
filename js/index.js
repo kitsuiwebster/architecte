@@ -3,7 +3,6 @@
 
 const domainName = 'http://localhost:5678'
 
-
 // fetch projects
 
 async function fetchProjects(projects) {
@@ -32,11 +31,10 @@ async function fetchProjects(projects) {
     }
 }
 
-// display filters
+// display categories
 
 function displayCategory(categoryLabel, projects, filter = true) {
     const categoryTemplate = document.querySelector('#category-template');
-
     const categoryDiv = categoryTemplate.content.cloneNode(true);
     const categoryLink = categoryDiv.querySelector('a');
 
@@ -56,20 +54,33 @@ function displayCategory(categoryLabel, projects, filter = true) {
     categoryTemplate.parentElement.appendChild(categoryDiv);
 }
 
+async function fetchCategories() {
+    try {
+        const response = await fetch(`${domainName}/api/categories`);
+        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+        return await response.json();
+    } catch (error) {
+        console.error("Les catégories n'ont pas pu être chargées:", error);
+        return [];
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
-    
+    try {
+        const response = await fetch(`${domainName}/api/works`);
+        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
-	const response = await fetch(`${domainName}/api/works`);
-    	if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const projects = await response.json();
+        const categories = await fetchCategories();
 
-    	const projects = await response.json();
-		const categories = [...new Set(projects.map((project) => project.category.name))];
-		const categoryTemplate = document.querySelector('#category-template');
-		const categoryDiv = categoryTemplate.content.cloneNode(true);
-		displayCategory('Tous', projects, false);
-        categories.forEach((category) => displayCategory(category, projects));
+        displayCategory('Tous', projects, false);
 
-		fetchProjects(projects);
+        categories.forEach((category) => displayCategory(category.name, projects));
+
+        fetchProjects(projects);
+    } catch (error) {
+        console.error("Error during DOMContentLoaded:", error);
+    }
 });
 
 
