@@ -147,9 +147,11 @@ document.getElementById("edit-button").addEventListener("click", async (e) => {
 
 // open explorer onclick
 
-document.getElementById("add-photo-button").addEventListener("click", () => {
-    document.getElementById("photo-upload").click();
-});
+    document.getElementById("add-photo-button").addEventListener("click", () => {
+        document.getElementById("photo-upload").click();
+    });
+
+
 
 
 // send the photo to backend

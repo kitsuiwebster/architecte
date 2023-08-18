@@ -304,6 +304,7 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
+	z-index: 10;
 }
 
 #title h3 {
@@ -330,7 +331,7 @@
     max-width: 100%;  
     height: auto;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 #modal-project-list {
@@ -343,8 +344,7 @@
 
 #modal-project-list li {
     list-style: none;
-    flex: 0 0 calc(20% - 1rem); 
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 20%; 
     transition: transform 0.3s ease;
 }
 
