@@ -132,8 +132,18 @@ async function populateModalWithProjects(projects) {
             const projectLi = document.createElement('li');
 
             projectLi.innerHTML = `
-                <img src="${project.imageUrl}" alt="${project.title}"/>
+                <div class="project-container">
+                    <img src="${project.imageUrl}" alt="${project.title}"/>
+                    <button class="delete-project" data-id="${project.id}">🗑️</button>
+                </div>
             `;
+
+            projectLi.querySelector('.delete-project').addEventListener('click', async (e) => {
+                const projectId = e.target.getAttribute('data-id');
+                await deleteProject(projectId);
+
+                hideDeleteButtons();
+            });
 
             projectListUl.appendChild(projectLi);
         });
@@ -141,6 +151,7 @@ async function populateModalWithProjects(projects) {
         console.error("Une erreur est survenue lors de l'ouverture de la modal: ", error);
     }
 }
+
 
 document.getElementById("edit-button").addEventListener("click", async (e) => {
     e.preventDefault();
@@ -153,7 +164,23 @@ document.getElementById("edit-button").addEventListener("click", async (e) => {
     }
 
     populateModalWithProjects(window.projects);
+
+    document.getElementById("delete-gallery").addEventListener("click", () => {
+        const deleteButtons = document.querySelectorAll('.delete-project');
+        deleteButtons.forEach(button => {
+            button.style.display = 'block';
+        });
+    });
 });
+
+// hide delete buttons when one is clicked
+
+function hideDeleteButtons() {
+    const deleteButtons = document.querySelectorAll('.delete-project');
+    deleteButtons.forEach(button => {
+        button.style.display = 'none';
+    });
+}
 
 
 // open explorer onclick
@@ -165,6 +192,24 @@ document.getElementById("edit-button").addEventListener("click", async (e) => {
 
 
 
-// send the photo to backend
+// delete a project
+
+async function deleteProject(id) {
+    try {
+        const response = await fetch(`${domainName}/api/works/${id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }
+        });
+        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+
+        window.projects = window.projects.filter(project => project.id != id);
+        populateModalWithProjects(window.projects);
+
+    } catch (error) {
+        console.error(`Le projet ${id} n'a pas été supprimé:`, error);
+    }
+}
 
 

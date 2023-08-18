@@ -242,7 +242,7 @@
 	
 /* dialog container */
 #dialog-container {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -384,3 +384,33 @@
     color: red;
     border: none;
 }
+
+
+/* delete button */
+
+.project-container {
+    position: relative;
+    display: inline-block; 
+}
+
+.delete-project {
+    position: absolute;
+    top: 5px;             
+    right: 5px;           
+    background: rgba(0, 0, 0, 1); /* Optional: It might be useful to provide some contrast against different images */
+    color: #fff;
+    border: none;
+    border-radius: 5px;   
+    width: 24px;          
+    height: 24px;         
+    cursor: pointer;      
+    padding: 0;           /* Reset default padding */
+    line-height: 24px;    /* Vertically center the icon */
+    text-align: center;   /* Horizontally center the icon */
+	display: none;
+}
+
+.delete-project:hover {
+    background: rgba(0,0,0,0.6);  
+}
+
