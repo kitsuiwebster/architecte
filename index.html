@@ -101,9 +101,6 @@
 			<ul id="modal-project-list"></ul>
 		</div>
 
-		
-		
-
         <div id="buttons-container">
             <button id="add-photo-button">Ajouter une photo</button>
 			<input type="file" id="photo-upload" style="display: none;">
@@ -112,6 +109,21 @@
         </div>
     </div>
 </div>
+
+
+<template id="add-work-template">
+	<form>
+		<label>
+			<input type="text" name="title">
+		</label>
+		<label>
+			<select name="category" id="workCategory"> </select>
+		</label>
+		<label>
+			<input type="file" name="image">
+		</label>
+	</form>
+</template>
 
 
 
