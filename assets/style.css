@@ -131,7 +131,7 @@
 	/* edit button */
 
 	#edit-button {
-		display: block;
+		display: none;
 	}
 	
 
@@ -242,7 +242,7 @@
 	
 /* dialog container */
 #dialog-container {
-    display: block;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
