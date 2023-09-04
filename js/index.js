@@ -140,7 +140,7 @@ document.getElementById("dialog-container").addEventListener("click", (e) => {
 
 // fetch projects 
 
-async function populateModalWithProjects(projects) {
+async function populateModalWithProjects() {
     try {
         const projectListUl = document.querySelector('#modal-project-list');
         projectListUl.innerHTML = '';
@@ -159,7 +159,7 @@ async function populateModalWithProjects(projects) {
                 const projectId = e.target.getAttribute('data-id');
                 await deleteProject(projectId);
                 await fetchProjects();
-                await populateModalWithProjects(projects);
+                await populateModalWithProjects();
                 await hideDeleteButtons();
             });
 
@@ -181,7 +181,7 @@ document.getElementById("edit-button").addEventListener("click", async (e) => {
         window.projects = await response.json();
     }
 
-    populateModalWithProjects(projects);
+    populateModalWithProjects();
 
     document.getElementById("delete-gallery").addEventListener("click", () => {
         const deleteButtons = document.querySelectorAll('.delete-project');
@@ -227,9 +227,6 @@ async function deleteProject(id) {
             }
         });
         if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-
-        projects = projects.filter(project => project.id != id);
-        populateModalWithProjects(projects);
 
     } catch (error) {
         console.error(`Le projet ${id} n'a pas été supprimé:`, error);
