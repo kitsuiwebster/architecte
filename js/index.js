@@ -5,6 +5,7 @@
 
 const domainName = 'http://localhost:5678'
 let projects = []; 
+let categories = [];
 
 // display projects
 
@@ -58,6 +59,8 @@ function displayCategory(categoryLabel, projects, filter = true) {
     categoryTemplate.parentElement.appendChild(categoryDiv);
 }
 
+// fetch categories
+
 async function fetchCategories() {
     try {
         const response = await fetch(`${domainName}/api/categories`);
@@ -68,6 +71,10 @@ async function fetchCategories() {
         return [];
     }
 }
+
+// async function assignCategories() {
+//     categories = await fetchCategories();
+// }
 
 
 // fetch projects
@@ -93,6 +100,7 @@ async function fetchProjects() {
 
 document.addEventListener('DOMContentLoaded', async () => {
     await fetchProjects();
+    fetchCategories();
 });
 
 
@@ -200,17 +208,48 @@ async function hideDeleteButtons() {
     });
 }
 
-
 // open explorer onclick
 
 document.getElementById("add-photo-button").addEventListener("click", () => {
-    const dialog = document.getElementById("dialog");
-    dialog.innerHTML = "";
+    const dialogContent = document.getElementById("dialog-content");
+    dialogContent.innerHTML = "";
+
+    const title = document.querySelector('#title > h3');
+    title.innerText = "Ajouter une photo"
 
     const newWorkForm = document.getElementById("new-work-form");
     const newWorkFormContent = newWorkForm.content.cloneNode(true);
 
+    const workCategories = newWorkFormContent .getElementById("work-categories");
+console.log(workCategories);
+    for (let category of categories) {
+         categories = fetchCategories();
+         const categoryOption = document.createElement('option');
+         categoryOption.innerText = category.name;
+         categoryOption.value = category.id;
+         workCategories.appendChild(categoryOption);
+    }
+
     dialog.appendChild(newWorkFormContent);
+
+    const workForm = document.getElementById("work-form");
+    workForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(workForm);
+
+        const response =await fetch(`${domainName}/api/works`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+            body: formData,
+        });
+
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+        window.location.reload();
+    })
 });
 
 

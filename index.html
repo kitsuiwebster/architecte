@@ -90,38 +90,45 @@
 
 <div id="dialog-container">
     <div id="dialog"><button type="button" id="cross" data-dismiss="modal">&times;</button>
-        <div id="title-container">
-            <div id="title">
-                <h3>Galerie Photo</h3>
-            </div>
-            
-        </div>
-
-        <div id="projects-list">
-			<ul id="modal-project-list"></ul>
+		
+		<div id="title-container">
+			<div id="title">
+				<h3>Galerie Photo</h3>
+			</div>
+			
 		</div>
-
-        <div id="buttons-container">
-            <button id="add-photo-button">Ajouter une photo</button>
-			<input type="file" id="photo-upload" style="display: none;">
-
-            <button id="delete-gallery">Supprimer la galerie</button>
-        </div>
+		
+		<div id="dialog-content">
+			
+	
+			<div id="projects-list">
+				<ul id="modal-project-list"></ul>
+			</div>
+	
+			<div id="buttons-container">
+				<button id="add-photo-button">Ajouter une photo</button>
+				<input type="file" id="photo-upload" style="display: none;">
+	
+				<button id="delete-gallery">Supprimer la galerie</button>
+			</div>
+		</div>     
     </div>
 </div>
 
 
 <template id="new-work-form">
-	<form>
+	<form id="work-form">
 		<label>
 			<input type="text" name="title">
 		</label>
 		<label>
-			<select name="category" id="workCategory"> </select>
+			<select name="category" id="work-categories"> </select>
 		</label>
 		<label>
 			<input type="file" name="image">
 		</label>
+
+		<button type="submit">Envoyer</button>
 	</form>
 </template>
 
