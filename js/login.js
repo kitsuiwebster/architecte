@@ -12,7 +12,6 @@ function getData(form) {
 }
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('form').addEventListener('submit', async (e) => {
     e.preventDefault();

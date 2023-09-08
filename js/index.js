@@ -1,10 +1,9 @@
-
 // PROJECTS PAGE
 
 // variables
 
 const domainName = 'http://localhost:5678'
-let projects = []; 
+let projects = [];
 let categories = [];
 
 // display projects
@@ -13,9 +12,12 @@ async function displayProjects(projects) {
     console.log("Inside displayProjects with data:", projects);
 
     try {
-
         const galleryDiv = document.querySelector('#gallery');
         const projectTemplate = document.querySelector('#project-template');
+
+        if (!galleryDiv || !projectTemplate) {
+            throw new Error("DOM elements not found.");
+        }
 
         galleryDiv.querySelectorAll('*:not(template)').forEach((element) => element.remove());
 
@@ -30,9 +32,8 @@ async function displayProjects(projects) {
 
             galleryDiv.appendChild(projectDiv);
         });
-    }
-    catch (error) {
-        console.error("there was an error fetching the projects: ", error);
+    } catch (error) {
+        console.error("There was an error displaying projects: ", error);
     }
 }
 
@@ -40,6 +41,12 @@ async function displayProjects(projects) {
 
 function displayCategory(categoryLabel, projects, filter = true) {
     const categoryTemplate = document.querySelector('#category-template');
+
+    if (!categoryTemplate) {
+        console.error("Category template not found.");
+        return;
+    }
+
     const categoryDiv = categoryTemplate.content.cloneNode(true);
     const categoryLink = categoryDiv.querySelector('a');
 
@@ -56,7 +63,12 @@ function displayCategory(categoryLabel, projects, filter = true) {
         );
     });
 
-    categoryTemplate.parentElement.appendChild(categoryDiv);
+    const parent = categoryTemplate.parentElement;
+    if (parent) {
+        parent.appendChild(categoryDiv);
+    } else {
+        console.error("Category template parent not found.");
+    }
 }
 
 // fetch categories
@@ -64,33 +76,33 @@ function displayCategory(categoryLabel, projects, filter = true) {
 async function fetchCategories() {
     try {
         const response = await fetch(`${domainName}/api/categories`);
-        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
         return await response.json();
     } catch (error) {
-        console.error("Les catégories n'ont pas pu être chargées:", error);
+        console.error("Categories could not be loaded:", error);
         return [];
     }
 }
-
-// async function assignCategories() {
-//     categories = await fetchCategories();
-// }
-
 
 // fetch projects
 
 async function fetchProjects() {
     try {
         const response = await fetch(`${domainName}/api/works`);
-        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
 
         projects = await response.json();
 
-        const categories = await fetchCategories();
+        const categoriesResponse = await fetchCategories();
 
-        displayCategory('Tous', projects, false);
+        const filterContainer = document.querySelector('.filter-container ul');
+        filterContainer.innerHTML = '';
 
-        categories.forEach((category) => displayCategory(category.name, projects));
+        categoriesResponse.forEach((category) => displayCategory(category.name, projects));
 
         displayProjects(projects);
     } catch (error) {
@@ -98,12 +110,16 @@ async function fetchProjects() {
     }
 }
 
+
+
 document.addEventListener('DOMContentLoaded', async () => {
-    await fetchProjects();
-    fetchCategories();
+    try {
+        await fetchProjects();
+        await fetchCategories();
+    } catch (error) {
+        console.error("Error during initialization:", error);
+    }
 });
-
-
 
 // display the edit button
 
@@ -112,10 +128,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (localStorage.getItem('userId') && localStorage.getItem('token')) {
         editButton.style.display = 'block';
+        updateNavText(true); // User is logged in, update the navigation text
     } else {
         editButton.style.display = 'none';
+        updateNavText(false); // User is not logged in, update the navigation text
     }
 });
+
+// update login/logout
+
+function updateNavText(isLoggedIn) {
+    const loginNavItem = document.querySelector('nav ul li a');
+    if (isLoggedIn) {
+        loginNavItem.textContent = 'logout';
+        loginNavItem.href = 'login.html'; // Set the logout URL here
+    } else {
+        loginNavItem.textContent = 'login';
+        loginNavItem.href = 'login.html'; // Set the login URL here
+    }
+}
+
+
 
 
 
@@ -123,19 +156,16 @@ document.addEventListener('DOMContentLoaded', () => {
 // MODAL
 
 // open the modal
-
 document.getElementById("edit-button").addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById("dialog-container").style.display = "flex";
 });
 
 // close the modal with the cross
-
 document.getElementById("cross").addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById("dialog-container").style.display = "none";
 });
-
 
 // close the modal when clicking out
 document.getElementById("dialog-container").addEventListener("click", (e) => {
@@ -144,14 +174,20 @@ document.getElementById("dialog-container").addEventListener("click", (e) => {
     }
 });
 
-
-
-// fetch projects 
-
+// fetch projects
 async function populateModalWithProjects() {
     try {
         const projectListUl = document.querySelector('#modal-project-list');
         projectListUl.innerHTML = '';
+
+        // Assuming 'projects' is defined globally or elsewhere in your code
+        if (!window.projects) {
+            const response = await fetch(`${domainName}/api/works`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            window.projects = await response.json();
+        }
 
         projects.forEach((project) => {
             const projectLi = document.createElement('li');
@@ -165,29 +201,26 @@ async function populateModalWithProjects() {
 
             projectLi.querySelector('.delete-project').addEventListener('click', async (e) => {
                 const projectId = e.target.getAttribute('data-id');
-                await deleteProject(projectId);
-                await fetchProjects();
-                await populateModalWithProjects();
-                await hideDeleteButtons();
+                try {
+                    await deleteProject(projectId);
+                    await fetchProjects();
+                    await populateModalWithProjects();
+                    await hideDeleteButtons();
+                } catch (error) {
+                    console.error(`Error deleting project ${projectId}:`, error);
+                }
             });
 
             projectListUl.appendChild(projectLi);
         });
     } catch (error) {
-        console.error("Une erreur est survenue lors de l'ouverture de la modal: ", error);
+        console.error("An error occurred while opening the modal: ", error);
     }
 }
-
 
 document.getElementById("edit-button").addEventListener("click", async (e) => {
     e.preventDefault();
     document.getElementById("dialog-container").style.display = "flex";
-
-    if (!window.projects) {
-        const response = await fetch(`${domainName}/api/works`);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        window.projects = await response.json();
-    }
 
     populateModalWithProjects();
 
@@ -200,7 +233,6 @@ document.getElementById("edit-button").addEventListener("click", async (e) => {
 });
 
 // hide delete buttons when one is clicked
-
 async function hideDeleteButtons() {
     const deleteButtons = document.querySelectorAll('.delete-project');
     deleteButtons.forEach(button => {
@@ -209,7 +241,6 @@ async function hideDeleteButtons() {
 }
 
 // open explorer onclick
-
 document.getElementById("add-photo-button").addEventListener("click", () => {
     const dialogContent = document.getElementById("dialog-content");
     dialogContent.innerHTML = "";
@@ -220,43 +251,47 @@ document.getElementById("add-photo-button").addEventListener("click", () => {
     const newWorkForm = document.getElementById("new-work-form");
     const newWorkFormContent = newWorkForm.content.cloneNode(true);
 
-    const workCategories = newWorkFormContent .getElementById("work-categories");
-console.log(workCategories);
-    for (let category of categories) {
-         categories = fetchCategories();
-         const categoryOption = document.createElement('option');
-         categoryOption.innerText = category.name;
-         categoryOption.value = category.id;
-         workCategories.appendChild(categoryOption);
-    }
+    const workCategories = newWorkFormContent.getElementById("work-categories");
+    console.log(workCategories);
+    try {
+        for (let category of categories) {
+            categories = fetchCategories();
+            const categoryOption = document.createElement('option');
+            categoryOption.innerText = category.name;
+            categoryOption.value = category.id;
+            workCategories.appendChild(categoryOption);
+        }
 
-    dialog.appendChild(newWorkFormContent);
+        dialog.appendChild(newWorkFormContent);
 
-    const workForm = document.getElementById("work-form");
-    workForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
+        const workForm = document.getElementById("work-form");
+        workForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-        const formData = new FormData(workForm);
+            const formData = new FormData(workForm);
 
-        const response =await fetch(`${domainName}/api/works`, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-            body: formData,
+            const response = await fetch(`${domainName}/api/works`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            await fetchProjects();
+
+            workForm.reset();
         });
-
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-        window.location.reload();
-    })
+    } catch (error) {
+        console.error("An error occurred while opening the explorer: ", error);
+    }
 });
 
-
-
-
 // delete a project
-
 async function deleteProject(id) {
     try {
         const response = await fetch(`${domainName}/api/works/${id}`, {
@@ -265,13 +300,10 @@ async function deleteProject(id) {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             }
         });
-        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
     } catch (error) {
-        console.error(`Le projet ${id} n'a pas été supprimé:`, error);
+        console.error(`The project ${id} was not deleted:`, error);
     }
 }
-
-
-
-// add a project form
