@@ -99,9 +99,6 @@ async function fetchProjects() {
 
         const categoriesResponse = await fetchCategories();
 
-        const filterContainer = document.querySelector('.filter-container ul');
-        filterContainer.innerHTML = '';
-
         categoriesResponse.forEach((category) => displayCategory(category.name, projects));
 
         displayProjects(projects);
@@ -112,10 +109,12 @@ async function fetchProjects() {
 
 
 
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        await fetchProjects();
         await fetchCategories();
+        await fetchProjects();
+        
     } catch (error) {
         console.error("Error during initialization:", error);
     }
@@ -128,10 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (localStorage.getItem('userId') && localStorage.getItem('token')) {
         editButton.style.display = 'block';
-        updateNavText(true); // User is logged in, update the navigation text
+        updateNavText(true); 
     } else {
         editButton.style.display = 'none';
-        updateNavText(false); // User is not logged in, update the navigation text
+        updateNavText(false);
     }
 });
 
@@ -141,10 +140,10 @@ function updateNavText(isLoggedIn) {
     const loginNavItem = document.querySelector('nav ul li a');
     if (isLoggedIn) {
         loginNavItem.textContent = 'logout';
-        loginNavItem.href = 'login.html'; // Set the logout URL here
+        loginNavItem.href = 'login.html'; 
     } else {
         loginNavItem.textContent = 'login';
-        loginNavItem.href = 'login.html'; // Set the login URL here
+        loginNavItem.href = 'login.html'; 
     }
 }
 
@@ -180,7 +179,6 @@ async function populateModalWithProjects() {
         const projectListUl = document.querySelector('#modal-project-list');
         projectListUl.innerHTML = '';
 
-        // Assuming 'projects' is defined globally or elsewhere in your code
         if (!window.projects) {
             const response = await fetch(`${domainName}/api/works`);
             if (!response.ok) {
@@ -241,21 +239,23 @@ async function hideDeleteButtons() {
 }
 
 // open explorer onclick
-document.getElementById("add-photo-button").addEventListener("click", () => {
+document.getElementById("add-photo-button").addEventListener("click", async () => {
     const dialogContent = document.getElementById("dialog-content");
     dialogContent.innerHTML = "";
 
     const title = document.querySelector('#title > h3');
-    title.innerText = "Ajouter une photo"
+    title.innerText = "Ajouter une photo";
 
     const newWorkForm = document.getElementById("new-work-form");
     const newWorkFormContent = newWorkForm.content.cloneNode(true);
 
     const workCategories = newWorkFormContent.getElementById("work-categories");
     console.log(workCategories);
+    
     try {
+        const categories = await fetchCategories();
+        
         for (let category of categories) {
-            categories = fetchCategories();
             const categoryOption = document.createElement('option');
             categoryOption.innerText = category.name;
             categoryOption.value = category.id;
@@ -290,6 +290,7 @@ document.getElementById("add-photo-button").addEventListener("click", () => {
         console.error("An error occurred while opening the explorer: ", error);
     }
 });
+
 
 // delete a project
 async function deleteProject(id) {

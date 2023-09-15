@@ -397,16 +397,16 @@
     position: absolute;
     top: 5px;             
     right: 5px;           
-    background: rgba(0, 0, 0, 1); /* Optional: It might be useful to provide some contrast against different images */
+    background: rgba(0, 0, 0, 1);
     color: #fff;
     border: none;
     border-radius: 5px;   
     width: 24px;          
     height: 24px;         
     cursor: pointer;      
-    padding: 0;           /* Reset default padding */
-    line-height: 24px;    /* Vertically center the icon */
-    text-align: center;   /* Horizontally center the icon */
+    padding: 0;           
+    line-height: 24px;  
+    text-align: center;  
 	display: none;
 }
 
@@ -414,3 +414,116 @@
     background: rgba(0,0,0,0.6);  
 }
 
+/* new work form */
+
+h4 {
+	size: 14px;
+}
+
+#open-explorer-button {
+	visibility: hidden;
+}
+
+#work-form-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#preview-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #E8F1F6;
+	padding: 1rem 2rem 1rem 2rem;
+	border-radius: 5px;
+}
+
+#work-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 3rem;
+}
+
+#open-explorer-label {
+	background-color: #c5c7c9;
+	padding:0.7rem;
+	font-weight: 700;
+	color: #696a6b;
+	width: 150px;
+	text-align: center;
+	border-radius: 50px;
+	font-size: 12px;
+}
+
+#default-image-container {
+	width: 76px;
+	height: 76px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#default-image {
+	width: 66px;
+	height: 59px;
+}
+
+#project-title {
+	width: 100%;
+	margin: 1rem 0 0.5rem 0;
+}
+
+#title-input {
+	width: 100%;
+	border: #E8F1F6;
+	height: 2.5rem;
+	box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.06);
+}
+
+#title-input-container {
+	width: 98%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#category-title {
+	width: 100%;
+	margin: 1rem 0 0.5rem 0;
+}
+
+#work-categories {
+	width: 100%;
+	border: #E8F1F6;
+	background-color: white;
+	height: 2.5rem;
+	box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.06);
+	
+}
+
+#work-categories-container {
+	width: 100%;
+	padding-bottom: 2.6rem;
+	border-bottom: solid 1.5px #c5c7c9;
+}
+
+#jpg-png {
+	font-size: 10px;
+	margin-top: -1rem;
+}
+
+#submit-button {
+	background-color: #c5c7c9;
+	margin-top: 2rem;
+	font-weight: 700;
+	color: white;
+	width: 10rem;
+	text-align: center;
+	border-radius: 50px;
+	font-size: 12px;
+	font-family: 'Syne';
+	border: 0;
+	padding: 0.5rem 1.3rem 0.5rem 1.3rem;
+}

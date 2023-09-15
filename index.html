@@ -118,17 +118,26 @@
 
 <template id="new-work-form">
 	<form id="work-form">
-		<label>
-			<input type="text" name="title">
-		</label>
-		<label>
-			<select name="category" id="work-categories"> </select>
-		</label>
-		<label>
-			<input type="file" name="image">
-		</label>
-
-		<button type="submit">Envoyer</button>
+		<div id="work-form-container">
+			<div id="preview-container">
+				<div id="default-image-container">
+					<img id="default-image" src="assets/images/default-project-picture.png">
+				</div>
+				<label id="open-explorer-label" for="open-explorer-button">+ Ajouter une photo</label>
+				<input id="open-explorer-button" type="file">
+				<p id="jpg-png">jpg, png : 4mo max</p>
+			</div>
+			<h4 id="project-title" >Titre</h4>
+			<label id="title-input-container">
+				<input id="title-input" type="text" name="title">
+			</label>
+			<h4 id="category-title" >Catégorie</h4>
+			<label id="work-categories-container" >
+				<select name="category" id="work-categories"> </select>
+			</label>	
+		</div>
+		
+		<button id="submit-button" type="submit">Valider</button>
 	</form>
 </template>
 
