@@ -20,6 +20,7 @@ async function displayProjects(projects) {
         }
 
         galleryDiv.querySelectorAll('*:not(template)').forEach((element) => element.remove());
+        // document.querySelectorAll('.filter-container > ul > *:not(template)').forEach((element) => element.remove());
 
         projects.forEach((project) => {
             const projectDiv = projectTemplate.content.cloneNode(true);
@@ -53,14 +54,22 @@ function displayCategory(categoryLabel, projects, filter = true) {
     categoryLink.classList.add('filter-button');
     categoryLink.innerText = categoryLabel;
 
+    if (categoryLabel === "Tous") {
+        categoryLink.id = "all-category";
+    }
+
     categoryLink.addEventListener('click', (event) => {
         event.preventDefault();
 
-        displayProjects(
-            filter ?
-                projects.filter((project) => project.category.name === categoryLabel)
-                : projects
-        );
+        if (categoryLabel === "Tous") {
+            displayProjects(projects);
+        } else {
+            displayProjects(
+                filter ?
+                    projects.filter((project) => project.category.name === categoryLabel)
+                    : projects
+            );
+        }
     });
 
     const parent = categoryTemplate.parentElement;
@@ -70,6 +79,7 @@ function displayCategory(categoryLabel, projects, filter = true) {
         console.error("Category template parent not found.");
     }
 }
+
 
 // fetch categories
 
@@ -114,11 +124,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         await fetchCategories();
         await fetchProjects();
-        
+
+        const allCategoryLink = document.getElementById('all-category');
+        if (allCategoryLink) {
+            allCategoryLink.addEventListener('click', (event) => {
+                event.preventDefault();
+                displayProjects(projects);
+            });
+        }
+
+
     } catch (error) {
         console.error("Error during initialization:", error);
     }
 });
+
 
 // display the edit button
 
@@ -127,12 +147,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (localStorage.getItem('userId') && localStorage.getItem('token')) {
         editButton.style.display = 'block';
-        updateNavText(true); 
+        updateNavText(true);
     } else {
         editButton.style.display = 'none';
         updateNavText(false);
     }
 });
+
+
+
+
+
 
 // update login/logout
 
@@ -140,10 +165,10 @@ function updateNavText(isLoggedIn) {
     const loginNavItem = document.querySelector('nav ul li a');
     if (isLoggedIn) {
         loginNavItem.textContent = 'logout';
-        loginNavItem.href = 'login.html'; 
+        loginNavItem.href = 'login.html';
     } else {
         loginNavItem.textContent = 'login';
-        loginNavItem.href = 'login.html'; 
+        loginNavItem.href = 'login.html';
     }
 }
 
@@ -164,14 +189,17 @@ document.getElementById("edit-button").addEventListener("click", (e) => {
 document.getElementById("cross").addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById("dialog-container").style.display = "none";
+    resetDialogContent()
 });
 
 // close the modal when clicking out
 document.getElementById("dialog-container").addEventListener("click", (e) => {
     if (e.target === e.currentTarget) {
         document.getElementById("dialog-container").style.display = "none";
+        resetDialogContent()
     }
 });
+
 
 // fetch projects
 async function populateModalWithProjects() {
@@ -238,9 +266,35 @@ async function hideDeleteButtons() {
     });
 }
 
-// open explorer onclick
+
+// go back to initial modal
+
+let originalDialogContent = null;
+
+function resetDialogContent() {
+    const dialogContent = document.getElementById("dialog-content");
+    const newWorkForm = document.getElementById("new-work-form");
+    newWorkForm.innerHTML = "";
+
+    if (originalDialogContent) {
+        dialogContent.innerHTML = originalDialogContent;
+    }
+}
+
+// Event listener for the back arrow
+// document.getElementById("back-arrow-container").addEventListener("click", () => {
+//     resetDialogContent();
+// });
+
+
+// open explorer 
 document.getElementById("add-photo-button").addEventListener("click", async () => {
     const dialogContent = document.getElementById("dialog-content");
+
+    if (!originalDialogContent) {
+        originalDialogContent = dialogContent.innerHTML;
+    }
+
     dialogContent.innerHTML = "";
 
     const title = document.querySelector('#title > h3');
@@ -251,10 +305,10 @@ document.getElementById("add-photo-button").addEventListener("click", async () =
 
     const workCategories = newWorkFormContent.getElementById("work-categories");
     console.log(workCategories);
-    
+
     try {
         const categories = await fetchCategories();
-        
+
         for (let category of categories) {
             const categoryOption = document.createElement('option');
             categoryOption.innerText = category.name;
@@ -267,6 +321,7 @@ document.getElementById("add-photo-button").addEventListener("click", async () =
         const workForm = document.getElementById("work-form");
         workForm.addEventListener("submit", async (e) => {
             e.preventDefault();
+            resetDialogContent();
 
             const formData = new FormData(workForm);
 
@@ -285,11 +340,19 @@ document.getElementById("add-photo-button").addEventListener("click", async () =
             await fetchProjects();
 
             workForm.reset();
+            document.getElementById("dialog-container").style.display = "none";
+
         });
+        
     } catch (error) {
         console.error("An error occurred while opening the explorer: ", error);
     }
 });
+
+
+
+
+
 
 
 // delete a project
@@ -308,3 +371,19 @@ async function deleteProject(id) {
         console.error(`The project ${id} was not deleted:`, error);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

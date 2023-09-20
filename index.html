@@ -49,7 +49,11 @@
 						<a href=""></a>
 					</li>
 				</template>
+				<li>
+					<a href="#" id="all-category">Tous</a>
+				</li>
 			</ul>
+			
 		</div>
 		
 		<div id="gallery" class="gallery">
@@ -92,6 +96,7 @@
     <div id="dialog"><button type="button" id="cross" data-dismiss="modal">&times;</button>
 		
 		<div id="title-container">
+			
 			<div id="title">
 				<h3>Galerie Photo</h3>
 			</div>
@@ -109,37 +114,40 @@
 				<button id="add-photo-button">Ajouter une photo</button>
 				<input type="file" id="photo-upload" style="display: none;">
 	
-				<button id="delete-gallery">Supprimer la galerie</button>
+				<button id="delete-gallery">Supprimer un projet</button>
 			</div>
 		</div>     
     </div>
 </div>
 
 
-<template id="new-work-form">
-	<form id="work-form">
-		<div id="work-form-container">
-			<div id="preview-container">
-				<div id="default-image-container">
-					<img id="default-image" src="assets/images/default-project-picture.png">
-				</div>
-				<label id="open-explorer-label" for="open-explorer-button">+ Ajouter une photo</label>
-				<input id="open-explorer-button" type="file">
-				<p id="jpg-png">jpg, png : 4mo max</p>
-			</div>
-			<h4 id="project-title" >Titre</h4>
-			<label id="title-input-container">
-				<input id="title-input" type="text" name="title">
-			</label>
-			<h4 id="category-title" >Catégorie</h4>
-			<label id="work-categories-container" >
-				<select name="category" id="work-categories"> </select>
-			</label>	
+	<template id="new-work-form">
+		<div id="back-arrow-container" >
+			<img id="back-arrow" src="assets/icons/back-arrow.png">
 		</div>
-		
-		<button id="submit-button" type="submit">Valider</button>
-	</form>
-</template>
+		<form id="work-form">
+			<div id="work-form-container">
+				<div id="preview-container">
+					<div id="default-image-container">
+						<img id="default-image" src="assets/images/default-project-picture.png">
+					</div>
+					<label id="open-explorer-label" for="open-explorer-button">+ Ajouter une photo</label>
+					<input id="open-explorer-button" type="file" name="image">
+					<p id="jpg-png">jpg, png : 4mo max</p>
+				</div>
+				<h4 id="project-title" >Titre</h4>
+				<label id="title-input-container">
+					<input id="title-input" type="text" name="title">
+				</label>
+				<h4 id="category-title" >Catégorie</h4>
+				<label id="work-categories-container" >
+					<select name="category" id="work-categories"> </select>
+				</label>	
+			</div>
+			
+			<button id="submit-button" type="submit">Valider</button>
+		</form>
+	</template>
 
 
 
