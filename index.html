@@ -1,170 +1,168 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
-		rel="stylesheet">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
-</head>
+  <body>
+    <header>
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <nav>
+        <ul>
+          <li>projets</li>
+          <li>contact</li>
+          <li><a href="login.html"> login</a></li>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="introduction">
+        <figure>
+          <img src="./assets/images/sophie-bluel.png" alt="" />
+        </figure>
+        <article>
+          <h2>Designer d'espace</h2>
+          <p>
+            Je raconte votre histoire, je valorise vos idées. Je vous accompagne
+            de la conception à la livraison finale du chantier.
+          </p>
+          <p>
+            Chaque projet sera étudié en commun, de façon à mettre en valeur les
+            volumes, les matières et les couleurs dans le respect de l’esprit
+            des lieux et le choix adapté des matériaux. Le suivi du chantier
+            sera assuré dans le souci du détail, le respect du planning et du
+            budget.
+          </p>
+          <p>
+            En cas de besoin, une équipe pluridisciplinaire peut-être constituée
+            : architecte DPLG, décorateur(trice)
+          </p>
+        </article>
+      </section>
+      <section id="portfolio">
+        <div class="title-container">
+          <h2>Mes Projets</h2>
+          <button id="edit-button">Modifier</button>
+        </div>
 
-<body>
-	<header>
-		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-		<nav>
-			<ul>
-				<li>projets</li>
-				<li>contact</li>
-				<li> <a href="login.html"> login</a></li>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-			</ul>
-		</nav>
-	</header>
-	<main>
-		<section id="introduction">
-			<figure>
-				<img src="./assets/images/sophie-bluel.png" alt="">
-			</figure>
-			<article>
-				<h2>Designer d'espace</h2>
-				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
-					finale du chantier.</p>
-				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
-					couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
-					chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
-					décorateur(trice)</p>
-			</article>
-		</section>
-		<section id="portfolio">
-			<div class="title-container">
-				<h2>Mes Projets</h2>
-				<button id="edit-button">Modifier</button>
-			</div>
+        <!-- filters -->
 
-			<!-- filters -->
+        <div class="filter-container">
+          <ul>
+            <template id="category-template">
+              <li>
+                <a href=""></a>
+              </li>
+            </template>
+            <li>
+              <a href="#" id="all-category">Tous</a>
+            </li>
+          </ul>
+        </div>
 
-			<div class="filter-container">
-				<ul>
-					<template id="category-template">
-						<li>
-							<a href=""></a>
-						</li>
-					</template>
-					<li>
-						<a href="#" id="all-category">Tous</a>
-					</li>
-				</ul>
+        <div id="gallery" class="gallery">
+          <template id="project-template">
+            <figure>
+              <img src="" alt="" />
+              <figcaption></figcaption>
+            </figure>
+          </template>
+        </div>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Vous avez un projet ? Discutons-en !</p>
+        <form action="#" method="post">
+          <label for="name">Nom</label>
+          <input type="text" name="name" id="name" />
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <label for="message">Message</label>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          <input type="submit" value="Envoyer" />
+        </form>
+      </section>
+    </main>
 
-			</div>
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
 
-			<div id="gallery" class="gallery">
-				<template id="project-template">
-					<figure>
-						<img src="" alt="">
-						<figcaption></figcaption>
-					</figure>
-				</template>
-			</div>
+    <!-- modal -->
 
+    <div id="dialog-container">
+      <div id="dialog">
+        <button type="button" id="cross" data-dismiss="modal">&times;</button>
 
-		</section>
-		<section id="contact">
-			<h2>Contact</h2>
-			<p>Vous avez un projet ? Discutons-en !</p>
-			<form action="#" method="post">
-				<label for="name">Nom</label>
-				<input type="text" name="name" id="name">
-				<label for="email">Email</label>
-				<input type="email" name="email" id="email">
-				<label for="message">Message</label>
-				<textarea name="message" id="message" cols="30" rows="10"></textarea>
-				<input type="submit" value="Envoyer">
-			</form>
-		</section>
-	</main>
+        <div id="title-container">
+          <div id="title">
+            <h3>Galerie Photo</h3>
+          </div>
+        </div>
+      </div>
+    </div>
 
-	<footer>
-		<nav>
-			<ul>
-				<li>Mentions Légales</li>
-			</ul>
-		</nav>
-	</footer>
+    <template id="dialog-content">
+      <div id="projects-list" class="project-list">
+        <ul id="modal-project-list"></ul>
+      </div>
 
-	<!-- modal -->
+      <div id="buttons-container">
+        <button id="add-photo-button">Ajouter une photo</button>
+        <input type="file" id="photo-upload" style="display: none" />
 
-	<div id="dialog-container">
-		<div id="dialog"><button type="button" id="cross" data-dismiss="modal">&times;</button>
+        <button id="delete-gallery">Supprimer un projet</button>
+      </div>
+    </template>
 
-			<div id="title-container">
+    <template id="new-work-form">
+      <div id="back-arrow-container">
+        <img id="back-arrow" src="assets/icons/back-arrow.png" />
+      </div>
+      <form id="work-form">
+        <div id="work-form-container">
+          <div id="preview-container">
+            <div id="default-image-container">
+              <img
+                id="default-image"
+                src="assets/images/default-project-picture.png"
+              />
+            </div>
+            <label id="open-explorer-label" for="open-explorer-button"
+              >+ Ajouter une photo</label
+            >
+            <input id="open-explorer-button" type="file" name="image" />
+            <p id="jpg-png">jpg, png : 4mo max</p>
+          </div>
+          <h4 id="project-title">Titre</h4>
+          <label id="title-input-container">
+            <input id="title-input" type="text" name="title" />
+          </label>
+          <h4 id="category-title">Catégorie</h4>
+          <label id="work-categories-container">
+            <select name="category" id="work-categories"></select>
+          </label>
+        </div>
 
-				<div id="title">
-					<h3>Galerie Photo</h3>
-				</div>
+        <button id="submit-button" type="submit">Valider</button>
+      </form>
+    </template>
 
-			</div>
-
-			
-		</div>
-	</div>
-
-
-	<template id="dialog-content">
-
-		<div id="projects-list">
-			<ul id="modal-project-list"></ul>
-		</div>
-
-		<div id="buttons-container">
-			<button id="add-photo-button">Ajouter une photo</button>
-			<input type="file" id="photo-upload" style="display: none;">
-
-			<button id="delete-gallery">Supprimer un projet</button>
-		</div>
-
-	</template>
-
-
-
-
-	<template id="new-work-form">
-		<div id="back-arrow-container">
-			<img id="back-arrow" src="assets/icons/back-arrow.png">
-		</div>
-		<form id="work-form">
-			<div id="work-form-container">
-				<div id="preview-container">
-					<div id="default-image-container">
-						<img id="default-image" src="assets/images/default-project-picture.png">
-					</div>
-					<label id="open-explorer-label" for="open-explorer-button">+ Ajouter une photo</label>
-					<input id="open-explorer-button" type="file" name="image">
-					<p id="jpg-png">jpg, png : 4mo max</p>
-				</div>
-				<h4 id="project-title">Titre</h4>
-				<label id="title-input-container">
-					<input id="title-input" type="text" name="title">
-				</label>
-				<h4 id="category-title">Catégorie</h4>
-				<label id="work-categories-container">
-					<select name="category" id="work-categories"> </select>
-				</label>
-			</div>
-
-			<button id="submit-button" type="submit">Valider</button>
-		</form>
-	</template>
-
-
-
-
-	<script src="js/index.js"></script>
-</body>
-
+    <script src="js/index.js"></script>
+  </body>
 </html>
