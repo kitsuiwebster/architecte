@@ -442,8 +442,9 @@ footer nav ul {
 
 /* buttons container */
 #buttons-container {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
+  align-items: center;
 }
 
 #add-photo-button,
@@ -465,10 +466,20 @@ footer nav ul {
   color: white;
 }
 
+#add-photo-button:hover {
+  background-color: #fff;
+  color: #1d6154;
+  border: 2px solid #1d6154;
+}
+
 #delete-gallery {
   background-color: white;
   color: red;
   border: none;
+}
+
+#delete-gallery:hover {
+  color: #696a6b;
 }
 
 /* delete button */
@@ -634,8 +645,12 @@ h4 {
 #back-arrow {
   width: 20px;
   height: 20px;
+  position: relative;
+  z-index: 99;
+  cursor: pointer;
 }
 
 #back-arrow-container {
   margin-top: -1.5rem;
+  
 }
