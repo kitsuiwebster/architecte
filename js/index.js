@@ -171,12 +171,6 @@ function updateNavText(isLoggedIn) {
 // MODAL
 let isInForm = false;
 
-// open the modal
-document.getElementById("edit-button").addEventListener("click", (e) => {
-  e.preventDefault();
-  document.getElementById("dialog-container").style.display = "flex";
-});
-
 // close the modal with the cross
 document.getElementById("cross").addEventListener("click", (e) => {
   e.preventDefault();
@@ -267,6 +261,10 @@ function openModal() {
   const dialog = document.getElementById("dialog");
   const dialogContent = document.getElementById("dialog-content");
   const dialogContentClone = dialogContent.content.cloneNode(true);
+  const contentContainer = document.getElementById("content-container");
+  if (contentContainer) {
+    contentContainer.remove();
+  }
   dialog.appendChild(dialogContentClone);
   dialog.lastElementChild.style.display = "block";
   openExplorer();
@@ -297,8 +295,8 @@ function openExplorer() {
       const dialog = document.getElementById("dialog");
       const buttonsContainer = document.getElementById("buttons-container");
       const projectList = document.getElementById("projects-list");
-      dialog.removeChild(buttonsContainer);
-      dialog.removeChild(projectList);
+      dialog.remove(buttonsContainer);
+      dialog.remove(projectList);
 
       const title = document.querySelector("#title > h3");
       title.innerText = "Ajouter une photo";
